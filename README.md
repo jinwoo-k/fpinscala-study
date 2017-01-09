@@ -98,6 +98,6 @@ notes**, links to more reading, and more.
 _Paul and Rúnar_
 
 
-**참고자료
+**참고자료**
 
 스칼라 입문자료 : https://github.com/codeport/scala/wiki/%EC%8A%A4%EC%B9%BC%EB%9D%BC-%EC%9E%85%EB%AC%B8-%EC%9E%90%EB%A3%8C
