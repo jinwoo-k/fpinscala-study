@@ -21,7 +21,7 @@ object Exercies2_5 extends App {
   println(plusOneAndplusOne(3)) // (3 + 1) + 1 = 5
   println(multiTwoAndmultiTwo(3)) // (3 * 2) * 2 = 12
 
-  // 중위 연산자 표현
+  // 중위 연산자 표현 (** 위에서 선언한 compose 함수가 아님!!!)
   println ((plusOne _ compose multiTwo _)(3))
   println ((multiTwo _ compose plusOne _)(3))
   println ((plusOne _ compose plusOne _)(3))
