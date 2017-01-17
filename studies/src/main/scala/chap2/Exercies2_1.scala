@@ -28,10 +28,10 @@ object Exercies2_1 extends App {
   }
 
   // 스트림을 이용한 구현 1
-  val fib4 = Stream.iterate( (0 ,1) ) { case (a,b)=>(b,a+b)  }.map(_._1)
+  val fib3 = Stream.iterate( (0 ,1) ) { case (a,b)=>(b,a+b)  }.map(_._1)
 
   // 스트림을 이용한 구현 2
-  def fib3( n : Int ) : Int = {
+  def fib4( n : Int ) : Int = {
     def go(f0: Int, f1: Int) : Stream[Int] = {
       Stream.cons(f0,go(f1,f0+f1))
     }
@@ -48,5 +48,21 @@ object Exercies2_1 extends App {
     }
     fib_tail( n, 0, 1)
   }
+
+
+  def test[R](msg:String)(block: => R): R = {
+    val t0 = System.nanoTime()
+    val result = block
+    println(s"[$msg]")
+    println("Elapsed time: " + (System.nanoTime - t0) + "ns")
+    println(s"result=$result")
+    result
+  }
+
+  test("fib1 : 정의에 가까운 재귀호출")(fib1(46))
+  test("fib2 : 반복문 사용")(fib2(46))
+  test("fib3 : 무한스트람1 - iterator")(fib3(46))
+  test("fib4 : 무한스트림2 - cons")(fib4(46))
+  test("fib5 : 꼬리재귀 호출")(fib5(46))
 
 }

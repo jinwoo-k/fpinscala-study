@@ -15,8 +15,8 @@ object Exercies2_2 extends App {
     checkOrder(0)
   }
 
-  val as1 = (1 to 10).toArray[Int]
-  println(isSorted(as1,(a:Int,b:Int)=> a < b ))
-  println(isSorted(as1,(a:Int,b:Int)=> a <= b ))
+  val as = (1 to 10).toArray[Int]
+  println(isSorted(as,(a:Int,b:Int)=> a < b ))
+  println(isSorted(as,(a:Int,b:Int)=> a <= b ))
 
 }
