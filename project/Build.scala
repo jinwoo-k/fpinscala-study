@@ -12,7 +12,7 @@ object FPInScalaBuild extends Build {
             base = file("."),
             settings = opts ++ Seq(
               onLoadMessage ~= (_ + nio2check())
-            )) aggregate (chapterCode, exercises, answers,studies)
+            )) aggregate (chapterCode, exercises, answers)
   lazy val chapterCode =
     Project(id = "chapter-code",
             base = file("chaptercode"),
@@ -25,10 +25,6 @@ object FPInScalaBuild extends Build {
     Project(id = "answers",
             base = file("answers"),
             settings = opts)
-  lazy val studies =
-    Project(id = "studies",
-      base = file("studies"),
-      settings = opts)
 
   def nio2check(): String = {
     val cls = "java.nio.channels.AsynchronousFileChannel"

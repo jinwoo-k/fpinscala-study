@@ -1,4 +1,4 @@
-package chap2
+package alfred.ch2
 
 /**
  * Created by alfredkim on 2017. 1. 16..
