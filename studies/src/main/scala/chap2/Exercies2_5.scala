@@ -23,7 +23,17 @@ object Exercies2_5 extends App {
 
   // 중위 연산자 표현 (** 위에서 선언한 compose 함수가 아님!!!)
   println ((plusOne _ compose multiTwo _)(3))
+  println ((multiTwo _ andThen plusOne _)(3))
+
   println ((multiTwo _ compose plusOne _)(3))
+  println ((plusOne _ andThen multiTwo _)(3))
+
   println ((plusOne _ compose plusOne _)(3))
+  println ((plusOne _ andThen plusOne _)(3))
+
   println ((multiTwo _ compose multiTwo _)(3))
+  println ((multiTwo _ andThen multiTwo _)(3))
+
+  // trait Function1 apply,compose,andThen
+  println(multiTwoAndmultiTwo.apply(3)) // apply는 고차함수 아님!
 }
