@@ -106,4 +106,23 @@ object List {
 
   // 연습문제 3.13  foldLeft를 이용하여 구현하므로 스택이 넘치는 현상을 피할 수 있다
   def foldRight2[A,B](l: List[A], z: B)(f: (A,B) => B): B = foldLeft(l, (b:B) => b)((g,a) => b => g(f(a,b)))(z)
+
+  //  연습문제 15
+  def concat[A](l: List[List[A]]): List[A] = foldRight2(l, Nil:List[A])( foldRight(_,_)(Cons(_,_)) )
+
+  //  연습문제 18
+  def map[A,B](as: List[A])(f: A => B) : List[B] = foldRight2(as,Nil: List[B])( (a, g) => Cons(f(a), g))
+
+  // 연습문제 19
+  def filter[A](as: List[A])( f: A => Boolean) : List[A] =  foldRight2(as,Nil: List[A])( (a, g) => if(f(a)) Cons(a,g) else g )
+
+  //  연습문제 20
+  def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] =  concat(List.map(l)(f))
+
+  //  연습문제 23
+  def zipWith[A, B, C](as1 : List[A], as2: List[B])( f: (A, B) => C ) : List[C] = (as1, as2) match {
+    case (Cons(h1 , t1), Cons(h2, t2)) => Cons[C](f(h1, h2), zipWith[A, B, C](t1, t2)(f))
+    case _ => Nil
+  }
 }
+
