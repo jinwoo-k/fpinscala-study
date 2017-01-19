@@ -72,7 +72,6 @@ object List {
       case _ => l
     }
 
-
   // 연습문제 3.6
   def init[A](l: List[A]): List[A] =
     l match {
@@ -80,4 +79,26 @@ object List {
       case Cons(_,Nil) => Nil
       case Cons(h,t) => Cons(h,init(t))
     }
+
+  // 연습문제 3.7
+  def foldRight[A,B](as: List[A], z: B)(f: (A, B) => B): B =
+    as match {
+      case Nil => z
+      case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+    }
+
+  // 연습문제 3.7
+  def product2(ns: List[Double]) =
+    foldRight(ns, 1.0)(_ * _)
+
+  // 연습문제 3.9
+  def length[A](as: List[A]) : Int = foldRight(as,0)((_,len) => len+1 )
+
+  // 연습문제 3.10
+  @annotation.tailrec
+  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = l match {
+    case Nil => z
+    case Cons(h,t) => foldLeft(t, f(z,h))(f)
+  }
+
 }
