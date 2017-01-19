@@ -10,7 +10,7 @@ object Exercies3_13 extends App {
   def foldRightWithFoldLeft[A,B](l: List[A], z: B)(f: (A,B) => B): B =
     List.foldLeft(l, (b:B) => b)((g,a) => b => g(f(a,b)))(z)
   // list = List(a0,a1,a2)
-  // g0(=z) : b => b
+  // g0 : b => b
   // g1 : b => g0(f(a0,b))
   // g2 : b => g1(f(a1,b))
   // g3 : b => g2(f(a2,b))
@@ -22,7 +22,7 @@ object Exercies3_13 extends App {
   def foldLeftWithFoldRight[A,B](l: List[A], z: B)(f: (B,A) => B): B =
     List.foldRight(l, (b:B) => b)((a,g) => b => g(f(b,a)))(z)
   // list = List(a0,a1,a2)
-  // g0(=z) : b => b
+  // g0 : b => b
   // g1 : b => g0(f(b,a2))
   // g2 : b => g1(f(b,a1))
   // g3 : b => g2(f(b,a0))
