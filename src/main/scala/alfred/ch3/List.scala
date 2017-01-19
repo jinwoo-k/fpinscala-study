@@ -80,7 +80,7 @@ object List {
       case Cons(h,t) => Cons(h,init(t))
     }
 
-  // 연습문제 3.7
+  // 연습문제 3.7 - 긴 목록 처리시에 스택이 넘칠 수 있다.
   def foldRight[A,B](as: List[A], z: B)(f: (A, B) => B): B =
     as match {
       case Nil => z
@@ -101,4 +101,9 @@ object List {
     case Cons(h,t) => foldLeft(t, f(z,h))(f)
   }
 
+  // 연습문제 3.12
+  def reverse[A](l: List[A]) : List[A] = foldLeft(l,Nil:List[A])((r,a) => Cons[A](a,r))
+
+  // 연습문제 3.13  foldLeft를 이용하여 구현하므로 스택이 넘치는 현상을 피할 수 있다
+  def foldRight2[A,B](l: List[A], z: B)(f: (A,B) => B): B = foldLeft(l, (b:B) => b)((g,a) => b => g(f(a,b)))(z)
 }

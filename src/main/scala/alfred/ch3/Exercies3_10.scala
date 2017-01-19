@@ -13,6 +13,6 @@ object Exercies3_10 extends App {
   val sum1 = List.foldLeft(list,0)( (s, a) => s + a )
   println(s"sum1=$sum1")
   Thread.sleep(500) // 에러 출력과 위의 결과 출력이 섞이지 않도록.
-  val sum2 = List.foldRight(list,0)( (s, a) => s + a )
+  val sum2 = List.foldRight(list,0)( (a, s) => s + a )
   println(s"sum2=$sum2")
 }
