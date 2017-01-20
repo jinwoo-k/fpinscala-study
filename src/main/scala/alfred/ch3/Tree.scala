@@ -45,5 +45,5 @@ object Tree {
 
   def depth1[A](t: Tree[A]): Int = fold(t)(a => 0)((l, r) => 1 + Math.max(l, r))
 
-  def map1[A, B](t: Tree[A])(f: A => B): Tree[B] = fold(t)(a => Leaf(f(a)): Tree[B])(Branch(_, _))
+  def map1[A, B](t: Tree[A])(f: A => B): Tree[B] = fold[A,Tree[B]](t)(a => Leaf(f(a)))(Branch(_, _))
 }
