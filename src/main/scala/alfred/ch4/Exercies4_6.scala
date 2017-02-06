@@ -1,38 +1,29 @@
 package alfred.ch4
 
-
 /**
  * Created by alfredkim on 2017. 2. 3..
  */
-object Exercies4_5 extends App {
-
-  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] =
-    a.foldRight[Option[List[B]]](Some(Nil))((a,bo) =>
-          for {
-           fa <-f(a)
-           b  <- bo
-          } yield (fa :: b)
-        )
-
-  val list1 = List("1", "2")
-  val list2 = List("1", "2", "false")
-
-  def Try[A](a: => A): Option[A] =
-    try Some(a)
-    catch {
-      case e: Exception => None
-    }
-
-  println(traverse(list1)(a => Try[Int](a.toInt)))
-  println(traverse(list2)(a => Try[Int](a.toInt)))
-
-
-  def sequence[A](a: List[Option[A]]): Option[List[A]] = traverse(a)(identity)
-
-  val s1 = List(Some(1), Some(2), Some(3))
-  val s2 = List(Some(1), None, Some(3))
-
-  println(sequence(s1))
-  println(sequence(s2))
-
+object Exercies4_6 extends App {
+  def Try[A](a: => A): Either[Exception, A] = try {
+    Right(a)
+  } catch {
+    case e: Exception => Left(e)
+  }
+  val res1 = Try { "1".toInt }
+  val res2 = Try { "1.2".toInt }
+  println("-- Try -- ")
+  println(res1)
+  println(res2)
+  println("-- map --")
+  println(res1.map( _ * 2 ))
+  println(res2.map( _ * 2 ))
+  println("-- flatMap --")
+  println(res1.flatMap( a => Right(a * 10)))
+  println(res2.flatMap( a => Right(a * 10)))
+  println("-- orElse --")
+  println(res1.orElse(Right(0.0)))
+  println(res2.orElse(Right(0.0)))
+  println("-- map2 --")
+  println(res1.map2(Right(2))(_ + _))
+  println(res2.map2(Right(2))(_ + _))
 }
