@@ -33,7 +33,7 @@ sealed trait Either[+E, +A] {
       case (Right(aa),Right(bb)) => Right(f(aa,bb))
       case (Left(ea),Right(_)) => Left(List(ea))
       case (Right(_),Left(eb)) => Left(List(eb))
-      case (Left(ea),Left(eb)) => println(ea);println(eb);Left(List(ea,eb))
+      case (Left(ea),Left(eb)) => Left(List(ea,eb))
     }
 }
 case class Left[+E](value: E) extends Either[E, Nothing]
