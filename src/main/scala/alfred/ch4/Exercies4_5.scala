@@ -9,7 +9,7 @@ object Exercies4_5 extends App {
   def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] =
     a.foldRight[Option[List[B]]](Some(Nil))((a,bo) =>
           for {
-           fa <-f(a)
+           fa <- f(a)
            b  <- bo
           } yield (fa :: b)
         )
