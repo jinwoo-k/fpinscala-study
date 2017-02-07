@@ -18,8 +18,12 @@ object Exercies4_3 extends App {
     println(even(1))
     println(even(2))
     //println(even(1))
+    println("-- collect method --")
     println((-5 to 10).collect(even))
-
+    println((-5 to 10).filter(i => i> 0 && i%2==0).map(_+1))
+    println((-5 to 10).collect {
+        case i if i>0 && i%2 == 0 => i - 1 // 부분함수
+    })
     println("-- 승격된 함수 even.lift")
     println(even.lift(1))
     println(even.lift(2))
