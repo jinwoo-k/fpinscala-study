@@ -6,6 +6,7 @@ import Stream._
  * Created by alfredkim on 2017. 2. 8..
  */
 trait Stream[+A] {
+
   def headOption: Option[A] = this match {
     case Empty => None
     case Cons(h, t) => Some(h())
@@ -40,6 +41,28 @@ trait Stream[+A] {
     case _ => Stream.empty
   }
 
+  def foldLeft[B](z: =>B)(f:( => B, A) => B): B = this match {
+    case Cons(h, t) => f(t().foldLeft(z)(f),h())
+    case _ => z
+  }
+
+  def foldRight[B](z: => B)(f: (A, => B) => B): B = this match {
+    case Cons(h, t) => f(h(),t().foldRight(z)(f))
+    case _ => z
+  }
+
+  def forAll(p: A => Boolean): Boolean =
+    foldRight(true)( (a,b) => p(a) && b )
+
+  def takeWhile1(f: A => Boolean): Stream[A] =
+    foldRight(empty[A])( (a,z) => if(f(a)) cons(a,z) else empty )
+
+  def headOption1: Option[A] = foldRight(None:Option[A])( (h,_) => Some(h))
+
+  def map[B](f: A => B ): Stream[B] = foldRight(empty[B])( (a, s) => cons(f(a),s))
+  def filter(f: A => Boolean): Stream[A] = foldRight(empty[A])((a, s) => if(f(a)) cons(a,s) else s)
+  def append[B>:A](b: => Stream[B]): Stream[B] = foldRight(b)((h, s) => cons(h,s))
+  def flatMap[B](f: A => Stream[B]): Stream[B] = foldRight(empty[B])((h, s) => f(h).append(s))
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
@@ -55,6 +78,5 @@ object Stream {
   def empty[A]: Stream[A] = Empty
 
   def apply[A](as: A*): Stream[A] =
-
     if (as.isEmpty) empty else cons(as.head, apply(as.tail: _*))
 }

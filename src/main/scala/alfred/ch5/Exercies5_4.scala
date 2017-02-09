@@ -3,7 +3,7 @@ package alfred.ch5
 /**
  * Created by alfredkim on 2017. 2. 3..
  */
-object Exercies5_3 extends App {
+object Exercies5_4 extends App {
 
     def intStream(from: Int,to: Int): Stream[Int] =
       if (from < to) Stream.cons(from, intStream(from + 1,to))
