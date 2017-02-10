@@ -5,16 +5,9 @@ package alfred.ch5
  */
 object Exercies5_11 extends App {
 
-  def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = f(z) match {
-    case Some((a, s)) => Stream.cons(a,unfold(s)(f))
-    case None => Stream.empty
-  }
+  import Stream._
 
-  val fibs = unfold((0,1))( s => {
-    val (s0,s1) = s
-    Some((s0,(s1,s0 + s1)))
-  })
-
-  println(fibs.take(10).toList)
+  val s = unfold(0)( s => if(s>10) None else Some(s*2+1 ,s+1))
+  println(s.toList)
 
 }
