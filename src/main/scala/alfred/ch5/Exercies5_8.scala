@@ -6,6 +6,6 @@ package alfred.ch5
 object Exercies5_8 extends App {
 
     val infStr = Stream.constant("A")
-    println(infStr.take(5).toList)
+    println(infStr.take(5))
 
 }

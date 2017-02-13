@@ -10,6 +10,6 @@ object Exercies5_10 extends App {
     go(0,1)
   }
 
-  println(fibs.take(10).toList)
+  println(fibs.take(10))
 
 }

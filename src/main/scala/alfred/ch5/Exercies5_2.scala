@@ -14,6 +14,6 @@ object Exercies5_2 extends App {
     val s10  = s.take(10)
     println(s10)
     println(s10.drop(5))
-    println(s10.toList)
-    println(s10.drop(5).toList)
+    println(s10)
+    println(s10.drop(5))
 }

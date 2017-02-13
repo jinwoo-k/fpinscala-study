@@ -8,15 +8,15 @@ object Exercies5_13 extends App {
   import Stream._
 
   val s = unfold(0)( s=> if(s >10 ) None else Some(s,s+1))
-  println(s.toList)
-  println(s.takeViaUnfold(3).mapViaUnfold(_ * 2).toList)
-  println(s.takeViaUnfold(12).mapViaUnfold(_ * 2).toList)
-  println(s.takeWhileViaUnfold(_ < 6).toList)
-  println(s.takeWhileViaUnfold(_ < 12).toList)
+  println(s)
+  println(s.takeViaUnfold(3).mapViaUnfold(_ * 2))
+  println(s.takeViaUnfold(12).mapViaUnfold(_ * 2))
+  println(s.takeWhileViaUnfold(_ < 6))
+  println(s.takeWhileViaUnfold(_ < 12))
 
   val s1 = Stream(1,2,3)
   val s2 = Stream("A","B")
-  println(s1.zipAll(s2).toList)
-  println(s2.zipAll(s1).toList)
+  println(s1.zipAll(s2))
+  println(s2.zipAll(s1))
 
 }

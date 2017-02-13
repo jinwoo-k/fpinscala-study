@@ -11,8 +11,6 @@ object Exercies5_5 extends App {
       else Stream(to)
 
     val s9  = intStream(1,Int.MaxValue).takeWhile1(_ < 10)
-    println(s9.toList)
-    val sum = s9.foldRight(Nil:List[Int])( (a,s) => { a :: s })
-    println(sum)
+    println(s9)
 
 }
